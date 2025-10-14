@@ -17,7 +17,7 @@ def create_tables():
     """Create database tables"""
     print("Creating database tables...")
     Base.metadata.create_all(bind=engine)
-    print("✅ Database tables created successfully!")
+    print("Database tables created successfully!")
 
 def create_admin_user():
     """Create an admin user"""
@@ -26,7 +26,7 @@ def create_admin_user():
         # Check if admin already exists
         admin = db.query(User).filter(User.email == "admin@bookstore.com").first()
         if admin:
-            print("✅ Admin user already exists!")
+            print("Admin user already exists!")
             return
         
         # Create admin user
@@ -40,13 +40,13 @@ def create_admin_user():
         
         db.add(admin_user)
         db.commit()
-        print("✅ Admin user created successfully!")
-        print("📧 Email: admin@bookstore.com")
-        print("🔑 Password: admin123")
-        print("⚠️  Please change the admin password after first login!")
+        print("Admin user created successfully!")
+        print("Email: admin@bookstore.com")
+        print("Password: admin123")
+        print("Please change the admin password after first login!")
         
     except Exception as e:
-        print(f"❌ Error creating admin user: {e}")
+        print(f"Error creating admin user: {e}")
         db.rollback()
     finally:
         db.close()
@@ -62,7 +62,7 @@ def create_sample_books():
         from app.models import Book
         existing_books = db.query(Book).count()
         if existing_books > 0:
-            print("✅ Books already exist in database!")
+            print("Books already exist in database!")
             return
         
         sample_books = [
@@ -117,20 +117,20 @@ def create_sample_books():
             book_create = BookCreate(**book_data)
             create_book(db, book_create)
         
-        print("✅ Sample books created successfully!")
-        print(f"📚 Added {len(sample_books)} books to the database")
+        print("Sample books created successfully!")
+        print(f"Added {len(sample_books)} books to the database")
         
     except Exception as e:
-        print(f"❌ Error creating sample books: {e}")
+        print(f"Error creating sample books: {e}")
         db.rollback()
     finally:
         db.close()
 
 def main():
     """Main setup function"""
-    print("🚀 Setting up Bookstore Application...")
-    print(f"📊 Database: {settings.DATABASE_URL}")
-    print(f"🌍 Environment: {settings.ENVIRONMENT}")
+    print("Setting up Bookstore Application...")
+    print(f"Database: {settings.DATABASE_URL}")
+    print(f"Environment: {settings.ENVIRONMENT}")
     print("-" * 50)
     
     # Create tables
@@ -143,13 +143,13 @@ def main():
     create_sample_books()
     
     print("-" * 50)
-    print("🎉 Setup completed successfully!")
-    print("\n📋 Next steps:")
+    print("Setup completed successfully!")
+    print("\nNext steps:")
     print("1. Start the application: uvicorn app.main:app --reload")
     print("2. Visit: http://localhost:8000")
     print("3. Login as admin: admin@bookstore.com / admin123")
     print("4. View API docs: http://localhost:8000/docs")
-    print("\n⚠️  Remember to change the admin password!")
+    print("\nRemember to change the admin password!")
 
 if __name__ == "__main__":
     main()
