@@ -69,47 +69,47 @@ def create_sample_books():
             {
                 "title": "Python Programming",
                 "author": "Guido van Rossum",
-                "description": "Learn Python programming from the creator of Python.",
+                "description": "Learn Python programming from the creator of Python. This comprehensive guide covers everything from basic syntax to advanced concepts like decorators, generators, and async programming.",
                 "price": 49.99,
                 "stock_quantity": 50,
                 "isbn": "978-0134076430",
-                "image_url": "https://via.placeholder.com/200x200?text=Python+Book"
+                "image_url": "/static/images/python-book.svg"
             },
             {
                 "title": "FastAPI Cookbook",
                 "author": "Sebastian Ramirez",
-                "description": "Master FastAPI development with practical recipes.",
+                "description": "Master FastAPI development with practical recipes. Learn to build high-performance APIs with automatic documentation, type hints, and modern Python features.",
                 "price": 39.99,
                 "stock_quantity": 30,
                 "isbn": "978-0134076431",
-                "image_url": "https://via.placeholder.com/200x200?text=FastAPI+Book"
+                "image_url": "/static/images/fastapi-book.svg"
             },
             {
                 "title": "Web Development with React",
                 "author": "Facebook Team",
-                "description": "Build modern web applications with React.",
+                "description": "Build modern web applications with React. Learn component-based architecture, hooks, state management, and best practices for scalable frontend development.",
                 "price": 59.99,
                 "stock_quantity": 25,
                 "isbn": "978-0134076432",
-                "image_url": "https://via.placeholder.com/200x200?text=React+Book"
+                "image_url": "/static/images/react-book.svg"
             },
             {
                 "title": "Database Design",
                 "author": "Database Expert",
-                "description": "Learn database design principles and best practices.",
+                "description": "Learn database design principles and best practices. Master SQL, normalization, indexing, and both relational and NoSQL database architectures.",
                 "price": 44.99,
                 "stock_quantity": 20,
                 "isbn": "978-0134076433",
-                "image_url": "https://via.placeholder.com/200x200?text=Database+Book"
+                "image_url": "/static/images/database-book.svg"
             },
             {
                 "title": "Docker for Developers",
                 "author": "Container Expert",
-                "description": "Master containerization with Docker.",
+                "description": "Master containerization with Docker. Learn to containerize applications, manage multi-container setups, and deploy with Docker Compose and orchestration tools.",
                 "price": 34.99,
                 "stock_quantity": 15,
                 "isbn": "978-0134076434",
-                "image_url": "https://via.placeholder.com/200x200?text=Docker+Book"
+                "image_url": "/static/images/docker-book.svg"
             }
         ]
         

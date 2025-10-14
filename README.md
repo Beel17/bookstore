@@ -16,6 +16,8 @@ A complete bookstore management system built with **FastAPI** backend and **Boot
 - **FastAPI**: Modern, fast web framework with automatic API documentation
 - **SQLAlchemy ORM**: Database abstraction with PostgreSQL support
 - **JWT Authentication**: Secure token-based authentication
+- **Static File Serving**: Local book cover images and custom CSS
+- **Responsive Design**: Bootstrap 5 with custom styling
 - **Docker Ready**: Complete containerization with docker-compose
 - **Unit Tests**: Comprehensive test coverage with pytest
 - **Environment Configuration**: Flexible config management
@@ -41,6 +43,9 @@ bookstore/
 │   │   └── payments.py      # Paystack integration
 │   ├── tests/               # Unit tests
 │   │   └── test_endpoints.py
+│   ├── static/              # Static files
+│   │   ├── images/          # Book cover images (SVG)
+│   │   └── css/             # Custom stylesheets
 │   └── templates/           # HTML templates with Bootstrap
 │       ├── base.html        # Base template
 │       ├── index.html       # Home page with book catalog

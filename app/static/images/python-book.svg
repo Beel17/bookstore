@@ -1,0 +1,9 @@
+<svg width="200" height="280" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="280" fill="#3776ab"/>
+  <rect x="10" y="10" width="180" height="260" fill="#ffffff" stroke="#3776ab" stroke-width="2"/>
+  <text x="100" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#3776ab">Python</text>
+  <text x="100" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#3776ab">Programming</text>
+  <text x="100" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#666">by Guido van Rossum</text>
+  <rect x="20" y="200" width="160" height="40" fill="#3776ab"/>
+  <text x="100" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Learn Python</text>
+</svg>

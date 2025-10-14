@@ -1,0 +1,11 @@
+<svg width="200" height="280" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="280" fill="#009688"/>
+  <rect x="10" y="10" width="180" height="260" fill="#ffffff" stroke="#009688" stroke-width="2"/>
+  <text x="100" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#009688">FastAPI</text>
+  <text x="100" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#009688">Cookbook</text>
+  <text x="100" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">by Sebastian Ramirez</text>
+  <rect x="20" y="180" width="160" height="40" fill="#009688"/>
+  <text x="100" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Modern APIs</text>
+  <circle cx="100" cy="240" r="15" fill="#009688"/>
+  <text x="100" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">⚡</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg width="200" height="280" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="280" fill="#6c757d"/>
+  <rect x="10" y="10" width="180" height="260" fill="#ffffff" stroke="#6c757d" stroke-width="2"/>
+  <text x="100" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#6c757d">📚</text>
+  <text x="100" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#6c757d">Book</text>
+  <text x="100" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#666">No Image</text>
+  <text x="100" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#666">Available</text>
+  <rect x="20" y="200" width="160" height="40" fill="#6c757d"/>
+  <text x="100" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Default Cover</text>
+</svg>
