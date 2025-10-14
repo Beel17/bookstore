@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Bookstore{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-book"></i> Welcome to Our Bookstore
+        </h1>
+
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search books...">
+                    <button class="btn btn-outline-secondary" type="button" onclick="searchBooks()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="text-center d-none">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Books Grid -->
+        <div id="booksGrid" class="row">
+            <!-- Books will be loaded here -->
+        </div>
+
+        <!-- No Books Message -->
+        <div id="noBooksMessage" class="text-center d-none">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No books found. Try adjusting your search.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let currentPage = 0;
+    const booksPerPage = 12;
+    let allBooks = [];
+    let filteredBooks = [];
+
+    // Load books from API
+    async function loadBooks() {
+        try {
+            showLoading(true);
+            const response = await apiCall('/books/?limit=100');
+            allBooks = response;
+            filteredBooks = response;
+            displayBooks(filteredBooks.slice(0, booksPerPage));
+        } catch (error) {
+            console.error('Error loading books:', error);
+            showError('Failed to load books. Please try again.');
+        } finally {
+            showLoading(false);
+        }
+    }
+
+    // Display books in grid
+    function displayBooks(books) {
+        const booksGrid = document.getElementById('booksGrid');
+        const noBooksMessage = document.getElementById('noBooksMessage');
+
+        if (books.length === 0) {
+            booksGrid.innerHTML = '';
+            noBooksMessage.classList.remove('d-none');
+            return;
+        }
+
+        noBooksMessage.classList.add('d-none');
+
+        booksGrid.innerHTML = books.map(book => `
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card book-card h-100">
+                    <img src="${book.image_url || 'https://via.placeholder.com/200x200?text=No+Image'}" 
+                         class="card-img-top book-image" alt="${book.title}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${book.title}</h5>
+                        <p class="card-text text-muted">by ${book.author}</p>
+                        <p class="card-text">${book.description ? book.description.substring(0, 100) + '...' : 'No description available.'}</p>
+                        <div class="mt-auto">
+                            <p class="card-text">
+                                <strong class="text-primary">$${book.price.toFixed(2)}</strong>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="fas fa-box"></i> ${book.stock_quantity} in stock
+                                </small>
+                            </p>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" onclick="addToCart(${book.id}, '${book.title}', ${book.price})" 
+                                        ${book.stock_quantity === 0 ? 'disabled' : ''}>
+                                    <i class="fas fa-shopping-cart"></i> 
+                                    ${book.stock_quantity === 0 ? 'Out of Stock' : 'Add to Cart'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Search books
+    function searchBooks() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        filteredBooks = allBooks.filter(book =>
+            book.title.toLowerCase().includes(searchTerm) ||
+            book.author.toLowerCase().includes(searchTerm) ||
+            (book.description && book.description.toLowerCase().includes(searchTerm))
+        );
+        displayBooks(filteredBooks.slice(0, booksPerPage));
+    }
+
+    // Add to cart functionality
+    function addToCart(bookId, title, price) {
+        if (!isAuthenticated()) {
+            alert('Please login to add items to cart');
+            window.location.href = '/login';
+            return;
+        }
+
+        // Simple cart implementation - could be enhanced with localStorage
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const existingItem = cart.find(item => item.bookId === bookId);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ bookId, title, price, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Show success message
+        const button = event.target;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i> Added!';
+        button.classList.remove('btn-primary');
+        button.classList.add('btn-success');
+
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.classList.remove('btn-success');
+            button.classList.add('btn-primary');
+        }, 2000);
+    }
+
+    // Show loading spinner
+    function showLoading(show) {
+        const spinner = document.getElementById('loadingSpinner');
+        if (show) {
+            spinner.classList.remove('d-none');
+        } else {
+            spinner.classList.add('d-none');
+        }
+    }
+
+    // Show error message
+    function showError(message) {
+        const booksGrid = document.getElementById('booksGrid');
+        booksGrid.innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> ${message}
+                </div>
+            </div>
+        `;
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', loadBooks);
+
+    // Search on Enter key
+    document.getElementById('searchInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            searchBooks();
+        }
+    });
+</script>
+{% endblock %}
