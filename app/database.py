@@ -16,13 +16,17 @@ if database_url.startswith("sqlite"):
         connect_args={"check_same_thread": False}
     )
 else:
-    # PostgreSQL configuration for production
+    # PostgreSQL configuration optimized for Vercel serverless
     engine = create_engine(
         database_url,
-        pool_size=10,
-        max_overflow=20,
-        pool_pre_ping=True,
-        pool_recycle=3600
+        pool_size=5,  # Smaller pool for serverless
+        max_overflow=10,  # Reduced overflow for serverless
+        pool_pre_ping=True,  # Test connections before use
+        pool_recycle=300,  # Recycle connections every 5 minutes
+        connect_args={
+            "connect_timeout": 10,  # 10 second connection timeout
+            "options": "-c timezone=utc"  # Set timezone to UTC
+        }
     )
     
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -9,8 +9,9 @@ from app.auth.routes import router as auth_router
 from app.books.routes import router as books_router
 from app.orders.routes import router as orders_router
 
-# Create database tables
-models.Base.metadata.create_all(bind=engine)
+# Database tables should be created separately, not at startup
+# Run create_tables.py locally once to create tables
+# models.Base.metadata.create_all(bind=engine)  # REMOVED: Causes crashes on Vercel
 
 # Initialize FastAPI app
 app = FastAPI(
