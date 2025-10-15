@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Settings:
-    # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./bookstore.db")
+    # Database - Use PostgreSQL for production (Vercel), SQLite for local development
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://postgres:Nabeel'swork@db.pyyzvnptruatchejwiwv.supabase.co:5432/postgres")
     
     # JWT
     SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key-here-change-in-production")
