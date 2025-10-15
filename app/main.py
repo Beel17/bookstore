@@ -42,13 +42,9 @@ app.include_router(books_router)
 app.include_router(orders_router)
 
 @app.get("/")
-async def root():
-    """Root endpoint"""
-    return {
-        "message": "Welcome to Bookstore API",
-        "docs": "/docs",
-        "version": "1.0.0"
-    }
+async def root(request: Request):
+    """Root endpoint - redirect to index page"""
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.get("/health")
 async def health_check():
@@ -70,6 +66,16 @@ async def login_page(request: Request):
 async def admin_page(request: Request):
     """Admin panel for book management"""
     return templates.TemplateResponse("admin.html", {"request": request})
+
+@app.get("/cart")
+async def cart_page(request: Request):
+    """Shopping cart page"""
+    return templates.TemplateResponse("cart.html", {"request": request})
+
+@app.get("/orders")
+async def orders_page(request: Request):
+    """Orders page showing user's orders"""
+    return templates.TemplateResponse("orders.html", {"request": request})
 
 @app.get("/checkout/{order_id}")
 async def checkout_page(request: Request, order_id: int):

@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Shopping Cart - Bookstore{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1><i class="fas fa-shopping-cart"></i> Shopping Cart</h1>
+            <button class="btn btn-outline-primary" onclick="window.location.href='/index'">
+                <i class="fas fa-arrow-left"></i> Continue Shopping
+            </button>
+        </div>
+
+        <!-- Cart Items -->
+        <div id="cartContainer">
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="text-center d-none">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Cart Items -->
+            <div id="cartItems">
+                <!-- Cart items will be loaded here -->
+            </div>
+
+            <!-- Empty Cart Message -->
+            <div id="emptyCartMessage" class="text-center d-none">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> Your cart is empty.
+                    <br>
+                    <a href="/index" class="btn btn-primary mt-2">Start Shopping</a>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div id="cartSummary" class="card mt-4 d-none">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5>Order Summary</h5>
+                            <p class="text-muted">Review your items before checkout</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <h4>Total: $<span id="cartTotal">0.00</span></h4>
+                            <button class="btn btn-success btn-lg w-100" onclick="proceedToCheckout()">
+                                <i class="fas fa-credit-card"></i> Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Container -->
+<div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1055;"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let cart = [];
+
+    // Load cart from localStorage or initialize empty
+    function loadCart() {
+        cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        displayCart();
+    }
+
+    // Display cart items
+    function displayCart() {
+        const cartItems = document.getElementById('cartItems');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const cartSummary = document.getElementById('cartSummary');
+
+        if (cart.length === 0) {
+            cartItems.innerHTML = '';
+            emptyCartMessage.classList.remove('d-none');
+            cartSummary.classList.add('d-none');
+            return;
+        }
+
+        emptyCartMessage.classList.add('d-none');
+        cartSummary.classList.remove('d-none');
+
+        cartItems.innerHTML = cart.map((item, index) => `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <img src="/static/images/default-book.svg" class="img-fluid rounded" alt="${item.title}">
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="card-title mb-1">${item.title}</h5>
+                            <p class="card-text text-muted">Price: $${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(${index}, -1)">-</button>
+                                <input type="number" class="form-control text-center" value="${item.quantity}" min="1" id="quantity-${index}">
+                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="text-primary">$${(item.price * item.quantity).toFixed(2)}</h5>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-outline-danger" onclick="removeItem(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        updateCartTotal();
+    }
+
+    // Update item quantity
+    function updateQuantity(index, change) {
+        const newQuantity = cart[index].quantity + change;
+        if (newQuantity < 1) {
+            removeItem(index);
+            return;
+        }
+
+        cart[index].quantity = newQuantity;
+        document.getElementById(`quantity-${index}`).value = newQuantity;
+        displayCart();
+        saveCart();
+    }
+
+    // Remove item from cart
+    function removeItem(index) {
+        cart.splice(index, 1);
+        displayCart();
+        saveCart();
+    }
+
+    // Update cart total
+    function updateCartTotal() {
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        document.getElementById('cartTotal').textContent = total.toFixed(2);
+    }
+
+    // Save cart to localStorage
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // Proceed to checkout
+    async function proceedToCheckout() {
+        if (!isAuthenticated()) {
+            showAlert('Please login to checkout', 'warning');
+            window.location.href = '/login';
+            return;
+        }
+
+        if (cart.length === 0) {
+            showAlert('Your cart is empty', 'warning');
+            return;
+        }
+
+        try {
+            showLoading(true);
+
+            // Create order
+            const orderItems = cart.map(item => ({
+                book_id: item.bookId,
+                quantity: item.quantity
+            }));
+
+            const response = await apiCall('/orders/', {
+                method: 'POST',
+                body: JSON.stringify({
+                    order_items: orderItems
+                })
+            });
+
+            // Clear cart
+            cart = [];
+            saveCart();
+
+            // Redirect to checkout page
+            window.location.href = `/checkout/${response.id}`;
+
+        } catch (error) {
+            console.error('Error creating order:', error);
+            showAlert('Failed to create order. Please try again.', 'danger');
+        } finally {
+            showLoading(false);
+        }
+    }
+
+    // Show loading spinner
+    function showLoading(show) {
+        const spinner = document.getElementById('loadingSpinner');
+        if (show) {
+            spinner.classList.remove('d-none');
+        } else {
+            spinner.classList.add('d-none');
+        }
+    }
+
+    // Show alert message
+    function showAlert(message, type = 'danger') {
+        const alertContainer = document.getElementById('alertContainer');
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+        alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        alertContainer.appendChild(alertDiv);
+
+        setTimeout(() => {
+            if (alertDiv.parentNode) {
+                alertDiv.remove();
+            }
+        }, 5000);
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', loadCart);
+</script>
+{% endblock %}

@@ -11,7 +11,6 @@ if settings.DATABASE_URL.startswith("sqlite"):
     )
 else:
     engine = create_engine(settings.DATABASE_URL)
-
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()

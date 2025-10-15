@@ -1,0 +1,20 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with navy blue -->
+  <circle cx="16" cy="16" r="16" fill="#1e3a8a"/>
+  
+  <!-- Open book (simplified) -->
+  <path d="M10 12 L16 10 L22 12 L22 20 L16 22 L10 20 Z" fill="white"/>
+  
+  <!-- Book spine -->
+  <path d="M10 12 L16 10 L16 22 L10 20 Z" fill="#fbbf24"/>
+  
+  <!-- Simple text lines -->
+  <line x1="13" y1="14" x2="19" y2="14" stroke="#1e3a8a" stroke-width="1" opacity="0.7"/>
+  <line x1="13" y1="16" x2="19" y2="16" stroke="#1e3a8a" stroke-width="1" opacity="0.5"/>
+  <line x1="13" y1="18" x2="19" y2="18" stroke="#1e3a8a" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Small payment accent (bottom right) -->
+  <rect x="22" y="22" width="6" height="4" rx="1" fill="white" opacity="0.3"/>
+  <rect x="23" y="23" width="4" height="1" fill="#1e3a8a" opacity="0.5"/>
+  <rect x="23" y="25" width="3" height="0.5" fill="#1e3a8a" opacity="0.5"/>
+</svg>
