@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "version": 2,
   "builds": [
     {
@@ -18,3 +19,8 @@
     }
   }
 }
+=======
+  "buildCommand": "pip install -r requirements.txt",
+  "installCommand": "pip install -r requirements.txt"
+}
+>>>>>>> 2baa497a62369ae98a5c925086c066b0300c3710
