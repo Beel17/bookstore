@@ -22,28 +22,7 @@
     <link href="/static/css/style.css" rel="stylesheet">
 
     <style>
-        .navbar-brand {
-            font-weight: bold;
-        }
-
-        .book-card {
-            transition: transform 0.2s;
-        }
-
-        .book-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .book-image {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .footer {
-            margin-top: auto;
-            background-color: #f8f9fa;
-        }
-
+        /* Override Bootstrap dark theme conflicts */
         body {
             display: flex;
             flex-direction: column;
@@ -53,6 +32,15 @@
         main {
             flex: 1;
         }
+        
+        /* Ensure proper dark theme inheritance */
+        .navbar-dark .navbar-nav .nav-link {
+            color: var(--text-secondary);
+        }
+        
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--text-primary);
+        }
     </style>
 
     {% block extra_css %}{% endblock %}
@@ -60,7 +48,7 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/index">
                 <i class="fas fa-book"></i> Bookstore
