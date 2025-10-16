@@ -378,25 +378,221 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--bg-tertiary);
 }
 
-/* Responsive Design */
+/* Enhanced Mobile Responsiveness */
 @media (max-width: 768px) {
+    /* Container adjustments */
     .container {
-        margin: 1rem;
-        padding: 1.5rem;
+        margin: 0.5rem;
+        padding: 1rem;
+        border-radius: 12px;
+        max-width: 100%;
+    }
+    
+    /* Typography for mobile */
+    .display-6 {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    
+    .lead {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Navigation mobile */
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    
+    .navbar-toggler {
+        border: none;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 0.75rem !important;
+        margin: 0.125rem 0;
+        border-radius: 8px;
+    }
+    
+    /* Search and cart mobile layout */
+    .input-group-lg {
+        margin-bottom: 1rem;
+    }
+    
+    .input-group .form-control {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .input-group .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Cart buttons mobile */
+    .btn-lg {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Book cards mobile optimization */
+    .book-card {
+        margin-bottom: 1.5rem;
         border-radius: 16px;
     }
     
     .book-image {
-        height: 200px;
+        height: 180px;
+        border-radius: 16px 16px 0 0;
     }
     
-    .navbar-brand {
-        font-size: 1.5rem;
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-text {
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Price and stock mobile */
+    .price-text {
+        font-size: 1.25rem;
+    }
+    
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    /* Grid adjustments */
+    .col-md-4, .col-lg-3 {
+        padding: 0 0.5rem;
+    }
+    
+    /* Forms mobile */
+    .form-control {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 12px;
+    }
+    
+    /* Modal mobile */
+    .modal-dialog {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+    
+    .modal-content {
+        border-radius: 16px;
+    }
+    
+    /* Table mobile */
+    .table-responsive {
+        border-radius: 12px;
+        margin: 0 -0.5rem;
+    }
+    
+    .table {
+        font-size: 0.85rem;
+    }
+    
+    .table thead th {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .table tbody td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    /* Alerts mobile */
+    .alert {
+        padding: 1rem;
+        border-radius: 12px;
+        margin: 0 -0.5rem;
+    }
+    
+    /* Footer mobile */
+    .footer {
+        padding: 1.5rem 0;
+        margin-top: 2rem;
+        text-align: center;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .container {
+        margin: 0.25rem;
+        padding: 0.75rem;
+    }
+    
+    .display-6 {
+        font-size: 1.75rem;
+    }
+    
+    .book-image {
+        height: 160px;
+    }
+    
+    .card-body {
+        padding: 0.75rem;
     }
     
     .btn-lg {
-        padding: 0.875rem 1.5rem;
-        font-size: 1rem;
+        padding: 0.625rem 0.875rem;
+        font-size: 0.85rem;
+    }
+    
+    .input-group .form-control,
+    .input-group .btn {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.85rem;
+    }
+    
+    .price-text {
+        font-size: 1.1rem;
+    }
+    
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+    .container {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .display-6 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .lead {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .book-image {
+        height: 140px;
+    }
+    
+    .card-body {
+        padding: 0.75rem;
     }
 }
 
