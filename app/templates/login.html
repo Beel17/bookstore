@@ -57,6 +57,11 @@
                         <input type="password" class="form-control" id="signupPassword" required minlength="6">
                         <div class="form-text">Password must be at least 6 characters long.</div>
                     </div>
+                    <div class="mb-3">
+                        <label for="adminCode" class="form-label">Admin Code (Optional)</label>
+                        <input type="text" class="form-control" id="adminCode" placeholder="Enter admin code to create admin account">
+                        <div class="form-text">Leave blank for regular user account. Contact administrator for admin code.</div>
+                    </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-success">
                             <i class="fas fa-user-plus"></i> Sign Up
@@ -157,6 +162,7 @@
         const email = document.getElementById('signupEmail').value;
         const username = document.getElementById('signupUsername').value;
         const password = document.getElementById('signupPassword').value;
+        const adminCode = document.getElementById('adminCode').value;
 
         try {
             const response = await fetch('/auth/signup', {
@@ -167,7 +173,8 @@
                 body: JSON.stringify({
                     email,
                     username,
-                    password
+                    password,
+                    admin_code: adminCode || null
                 })
             });
 

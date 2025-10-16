@@ -10,6 +10,7 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str
+    admin_code: Optional[str] = None
     
     @validator('password')
     def validate_password(cls, v):

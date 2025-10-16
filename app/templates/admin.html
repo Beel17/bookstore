@@ -128,11 +128,18 @@
         }
 
         try {
-            await apiCall('/auth/admin-only');
-            return true;
+            const response = await apiCall('/auth/admin-only');
+            if (response.message === 'Admin access granted') {
+                return true;
+            } else {
+                throw new Error('Not admin user');
+            }
         } catch (error) {
-            showAlert('Admin access required', 'danger');
-            window.location.href = '/index';
+            console.error('Admin access denied:', error);
+            showAlert('Admin access required. Redirecting to home page...', 'danger');
+            setTimeout(() => {
+                window.location.href = '/index';
+            }, 2000);
             return false;
         }
     }

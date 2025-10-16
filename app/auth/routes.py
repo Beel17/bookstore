@@ -27,13 +27,17 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
             detail="Email or username already registered"
         )
     
+    # Determine role based on admin code
+    role = UserRole.ADMIN if user.admin_code == "ADMIN2024SECRET" else UserRole.USER
+    
     # Create new user
     hashed_password = get_password_hash(user.password)
     db_user = User(
         email=user.email,
         username=user.username,
         hashed_password=hashed_password,
-        role=UserRole.USER
+        role=role,
+        is_active=True
     )
     
     db.add(db_user)
