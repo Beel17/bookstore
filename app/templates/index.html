@@ -9,21 +9,29 @@
             <i class="fas fa-book"></i> Welcome to Our Bookstore
         </h1>
 
+        <!-- Welcome Message -->
+        <div class="text-center mb-5">
+            <h2 class="display-6 text-primary mb-3">
+                <i class="fas fa-book-open"></i> Discover Your Next Favorite Book
+            </h2>
+            <p class="lead text-muted">Browse our curated collection of timeless classics and modern masterpieces</p>
+        </div>
+
         <!-- Search Bar and Cart -->
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search books...">
-                    <button class="btn btn-outline-secondary" type="button" onclick="searchBooks()">
-                        <i class="fas fa-search"></i>
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search by title, author, or description...">
+                    <button class="btn btn-primary" type="button" onclick="searchBooks()">
+                        <i class="fas fa-search"></i> Search
                     </button>
                 </div>
             </div>
-            <div class="col-md-6 text-end">
-                <button class="btn btn-outline-primary" onclick="window.location.href='/cart'" id="cartButton">
+            <div class="col-md-4 text-end">
+                <button class="btn btn-outline-primary btn-lg me-2" onclick="window.location.href='/cart'" id="cartButton">
                     <i class="fas fa-shopping-cart"></i> Cart (<span id="cartCount">0</span>)
                 </button>
-                <button class="btn btn-primary ms-2" onclick="checkout()" id="checkoutButton" style="display: none;">
+                <button class="btn btn-success btn-lg" onclick="checkout()" id="checkoutButton" style="display: none;">
                     <i class="fas fa-credit-card"></i> Checkout
                 </button>
             </div>
@@ -91,24 +99,27 @@
         booksGrid.innerHTML = books.map(book => `
             <div class="col-md-4 col-lg-3 mb-4">
                 <div class="card book-card h-100">
-                    <img src="${book.image_url || '/static/images/default-book.svg'}" 
-                         class="card-img-top book-image" alt="${book.title}"
-                         onerror="this.src='/static/images/default-book.svg'">
+                    <div class="position-relative">
+                        <img src="${book.image_url || '/static/images/default-book.svg'}" 
+                             class="card-img-top book-image" alt="${book.title}"
+                             onerror="this.src='/static/images/default-book.svg'">
+                        ${book.stock_quantity === 0 ? '<div class="position-absolute top-0 end-0 m-2"><span class="badge bg-danger">Out of Stock</span></div>' : ''}
+                    </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">${book.title}</h5>
-                        <p class="card-text text-muted">by ${book.author}</p>
-                        <p class="card-text">${book.description ? book.description.substring(0, 100) + '...' : 'No description available.'}</p>
+                        <h5 class="card-title text-dark fw-bold">${book.title}</h5>
+                        <p class="card-text text-primary mb-2">
+                            <i class="fas fa-user"></i> by ${book.author}
+                        </p>
+                        <p class="card-text text-muted small mb-3">${book.description ? book.description.substring(0, 120) + '...' : 'No description available.'}</p>
                         <div class="mt-auto">
-                            <p class="card-text">
-                                <strong class="text-primary">$${book.price.toFixed(2)}</strong>
-                            </p>
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    <i class="fas fa-box"></i> ${book.stock_quantity} in stock
-                                </small>
-                            </p>
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-primary" onclick="addToCart(${book.id}, '${book.title}', ${book.price})" 
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="price-text">$${book.price.toFixed(2)}</span>
+                                <span class="badge bg-info text-dark">
+                                    <i class="fas fa-box"></i> ${book.stock_quantity} left
+                                </span>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-lg" onclick="addToCart(${book.id}, '${book.title}', ${book.price})" 
                                         ${book.stock_quantity === 0 ? 'disabled' : ''}>
                                     <i class="fas fa-shopping-cart"></i> 
                                     ${book.stock_quantity === 0 ? 'Out of Stock' : 'Add to Cart'}

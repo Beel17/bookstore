@@ -168,3 +168,28 @@ def verify_payment(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Payment verification failed: {str(e)}"
         )
+
+@router.get("/payment/callback")
+def payment_callback(
+    trxref: str,
+    reference: str,
+    db: Session = Depends(get_db)
+):
+    """Payment callback from Paystack"""
+    try:
+        # Verify the payment using the reference
+        result = verify_paystack_payment(db, reference)
+        
+        # Redirect to success page or return success response
+        from fastapi.responses import RedirectResponse
+        
+        if result.get("status") == "success":
+            # Extract order_id from payment data if available
+            order_id = result.get("order_id", 1)  # Default to 1 if not found
+            return RedirectResponse(url=f"/orders?payment=success&order_id={order_id}")
+        else:
+            return RedirectResponse(url="/orders?payment=failed")
+            
+    except Exception as e:
+        print(f"Payment callback error: {e}")
+        return RedirectResponse(url="/orders?payment=error")

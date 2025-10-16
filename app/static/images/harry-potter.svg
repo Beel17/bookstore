@@ -1,0 +1,28 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Book Cover Background -->
+  <rect width="200" height="300" fill="#1a365d"/>
+  
+  <!-- Main Panel -->
+  <rect x="20" y="40" width="160" height="220" fill="#2c5282" stroke="#1a365d" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="100" y="90" text-anchor="middle" fill="#f7fafc" font-family="serif" font-size="10" font-weight="bold">HARRY POTTER</text>
+  <text x="100" y="105" text-anchor="middle" fill="#f7fafc" font-family="serif" font-size="10" font-weight="bold">AND THE</text>
+  <text x="100" y="120" text-anchor="middle" fill="#f7fafc" font-family="serif" font-size="10" font-weight="bold">PHILOSOPHER'S</text>
+  <text x="100" y="135" text-anchor="middle" fill="#f7fafc" font-family="serif" font-size="10" font-weight="bold">STONE</text>
+  
+  <!-- Author -->
+  <text x="100" y="200" text-anchor="middle" fill="#bee3f8" font-family="serif" font-size="9">J.K. Rowling</text>
+  
+  <!-- Lightning Bolt -->
+  <path d="M90 150 L85 170 L95 170 L90 190 L100 170 L90 170 Z" fill="#ffd700"/>
+  
+  <!-- Magical Sparkles -->
+  <circle cx="70" cy="140" r="1" fill="#ffd700"/>
+  <circle cx="130" cy="160" r="1" fill="#ffd700"/>
+  <circle cx="75" cy="180" r="1" fill="#ffd700"/>
+  <circle cx="125" cy="145" r="1" fill="#ffd700"/>
+  
+  <!-- Decorative Border -->
+  <rect x="25" y="45" width="150" height="210" fill="none" stroke="#bee3f8" stroke-width="1"/>
+</svg>

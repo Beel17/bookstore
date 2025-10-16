@@ -53,7 +53,7 @@ def seed_database():
                 "price": 15.99,
                 "stock_quantity": 50,
                 "isbn": "978-0743273565",
-                "image_url": "/static/images/default-book.svg"
+                "image_url": "/static/images/the-great-gatsby.svg"
             },
             {
                 "title": "To Kill a Mockingbird",
@@ -62,7 +62,7 @@ def seed_database():
                 "price": 14.99,
                 "stock_quantity": 40,
                 "isbn": "978-0061120084",
-                "image_url": "/static/images/default-book.svg"
+                "image_url": "/static/images/to-kill-a-mockingbird.svg"
             },
             {
                 "title": "1984",
@@ -71,7 +71,7 @@ def seed_database():
                 "price": 13.99,
                 "stock_quantity": 60,
                 "isbn": "978-0451524935",
-                "image_url": "/static/images/default-book.svg"
+                "image_url": "/static/images/1984-book.svg"
             },
             {
                 "title": "Pride and Prejudice",
@@ -80,7 +80,7 @@ def seed_database():
                 "price": 12.99,
                 "stock_quantity": 35,
                 "isbn": "978-0141439518",
-                "image_url": "/static/images/default-book.svg"
+                "image_url": "/static/images/pride-and-prejudice.svg"
             },
             {
                 "title": "The Catcher in the Rye",
@@ -98,7 +98,7 @@ def seed_database():
                 "price": 16.99,
                 "stock_quantity": 100,
                 "isbn": "978-0747532699",
-                "image_url": "/static/images/default-book.svg"
+                "image_url": "/static/images/harry-potter.svg"
             },
             {
                 "title": "The Lord of the Rings",

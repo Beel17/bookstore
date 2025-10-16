@@ -1,20 +1,45 @@
 /* Custom styles for the bookstore application */
 
+/* Modern gradient background */
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* Main content area */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+}
+
 .book-card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
     border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
 }
 
 .book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
 .book-image {
-    height: 200px;
+    height: 220px;
     object-fit: cover;
-    border-radius: 8px 8px 0 0;
+    border-radius: 15px 15px 0 0;
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover .book-image {
+    transform: scale(1.05);
 }
 
 .book-card .card-body {
@@ -35,9 +60,10 @@
 }
 
 .price-text {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #28a745;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .stock-text {
@@ -46,9 +72,27 @@
 }
 
 /* Navigation styles */
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(0, 123, 255, 0.9) !important;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.nav-link {
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 0 0.25rem;
+}
+
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    transform: translateY(-1px);
 }
 
 /* Footer styles */
@@ -77,9 +121,27 @@
 }
 
 /* Form styles */
+.form-control {
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
 .form-control:focus {
     border-color: #007bff;
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    transform: translateY(-1px);
+}
+
+.input-group {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.input-group .btn {
+    border-radius: 0 12px 12px 0;
+    border-left: none;
 }
 
 /* Loading spinner */

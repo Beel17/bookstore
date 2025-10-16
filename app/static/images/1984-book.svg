@@ -1,0 +1,21 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Book Cover Background -->
+  <rect width="200" height="300" fill="#1a202c"/>
+  
+  <!-- Main Panel -->
+  <rect x="20" y="40" width="160" height="220" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+  
+  <!-- Title - Large Numbers -->
+  <text x="100" y="120" text-anchor="middle" fill="#e53e3e" font-family="monospace" font-size="36" font-weight="bold">1984</text>
+  
+  <!-- Author -->
+  <text x="100" y="200" text-anchor="middle" fill="#cbd5e0" font-family="serif" font-size="10">George Orwell</text>
+  
+  <!-- Surveillance Eye -->
+  <circle cx="100" cy="160" r="15" fill="#e53e3e" opacity="0.8"/>
+  <circle cx="100" cy="160" r="8" fill="#1a202c"/>
+  <circle cx="100" cy="160" r="3" fill="#e53e3e"/>
+  
+  <!-- Warning Border -->
+  <rect x="25" y="45" width="150" height="210" fill="none" stroke="#e53e3e" stroke-width="2"/>
+</svg>

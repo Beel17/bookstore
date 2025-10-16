@@ -1,0 +1,20 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Book Cover Background -->
+  <rect width="200" height="300" fill="#1a365d"/>
+  
+  <!-- Art Deco Pattern -->
+  <rect x="20" y="40" width="160" height="220" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="100" y="120" text-anchor="middle" fill="#f7fafc" font-family="serif" font-size="14" font-weight="bold">THE GREAT</text>
+  <text x="100" y="140" text-anchor="middle" fill="#f7fafc" font-family="serif" font-size="14" font-weight="bold">GATSBY</text>
+  
+  <!-- Author -->
+  <text x="100" y="200" text-anchor="middle" fill="#cbd5e0" font-family="serif" font-size="10">F. Scott Fitzgerald</text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="50" cy="80" r="3" fill="#e2e8f0"/>
+  <circle cx="150" cy="80" r="3" fill="#e2e8f0"/>
+  <circle cx="50" cy="220" r="3" fill="#e2e8f0"/>
+  <circle cx="150" cy="220" r="3" fill="#e2e8f0"/>
+</svg>

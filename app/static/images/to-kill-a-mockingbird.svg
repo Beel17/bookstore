@@ -1,0 +1,20 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Book Cover Background -->
+  <rect width="200" height="300" fill="#744210"/>
+  
+  <!-- Main Panel -->
+  <rect x="20" y="40" width="160" height="220" fill="#975a16" stroke="#744210" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="100" y="100" text-anchor="middle" fill="#f7fafc" font-family="serif" font-size="11" font-weight="bold">TO KILL A</text>
+  <text x="100" y="115" text-anchor="middle" fill="#f7fafc" font-family="serif" font-size="11" font-weight="bold">MOCKINGBIRD</text>
+  
+  <!-- Author -->
+  <text x="100" y="200" text-anchor="middle" fill="#fef5e7" font-family="serif" font-size="10">Harper Lee</text>
+  
+  <!-- Bird Silhouette -->
+  <path d="M80 140 Q100 130 120 140 Q100 150 80 140" fill="#f7fafc" opacity="0.7"/>
+  
+  <!-- Decorative Border -->
+  <rect x="25" y="45" width="150" height="210" fill="none" stroke="#fef5e7" stroke-width="1"/>
+</svg>
